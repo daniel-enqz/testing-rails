@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TestingTraining</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <% flash.each do |type, message| %>
+        <%= message %>
+    <% end %>
+    <li class='mt-8' ><%= button_to("Log out", destroy_author_session_path, method: :delete, data: {turbo: false }) if current_author %></li>
+    <%= yield %>
+  </body>
+</html>
