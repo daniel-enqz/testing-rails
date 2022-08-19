@@ -1,0 +1,34 @@
+<%= form_with(model: book) do |form| %>
+  <div class="justify-content-center my-2" id="input_form">
+    <% if book.errors.any? %>
+      <div class="error_explanation alert alert-danger alert-dismissible fade show m-0 p-0" role="alert">
+      <p class="mb-0">
+        <ul class="m-0 p-0">
+          <% book.errors.each do |error| %>
+            <p class="p-0 m-2">Error! <%= error.full_message %></p>
+          <% end %>
+        </ul></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <% end %>
+
+    <div class="field form-group">
+      <%= form.label :title, class:"font-weight-bold" %>
+      <%= form.text_field :title, class:"form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :genre, class:"font-weight-bold d-flex" %>
+      <%= form.select(:genre, Book::GENRES.collect { |genre| genre }) %>
+    </div>
+
+    <div class="actions d-flex my-2">
+      <%= form.submit class:'btn btn-info btn-block'%>
+    </div>
+    <div class="actions d-flex my-2">
+      <%= link_to 'Cancel', books_path, class:'btn btn-outline-info btn-block'%>
+    </div>
+  </div>
+<% end %>
